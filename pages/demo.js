@@ -1,4 +1,6 @@
 import { connect } from 'react-redux';
+import { Button } from '@material-ui/core';
+
 import styles from '../styles/Home.module.css';
 import { decrementCounter, incrementCounter } from './redux/actions/counter';
 
@@ -7,7 +9,13 @@ function Demo(props) {
     <div className={styles.container}>
       <div>count: {props.counter}</div>
       <div>
-        <button onClick={props.incrementCounter}>Increment</button>
+        <Button
+          variant='contained'
+          color='primary'
+          onClick={props.incrementCounter}
+        >
+          Increment
+        </Button>
       </div>
     </div>
   );
