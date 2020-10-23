@@ -13,7 +13,7 @@ const bindMiddleware = middleware => {
 };
 
 const makeStore = context => {
-  return createStore(rootReducer, bindMiddleware([logger, thunkMiddleware]));
+  return createStore(rootReducer, bindMiddleware([thunkMiddleware, logger]));
 };
 
-export const wrapper = createWrapper(makeStore, { debug: true });
+export const wrapper = createWrapper(makeStore);
