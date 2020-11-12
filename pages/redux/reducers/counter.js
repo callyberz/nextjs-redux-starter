@@ -3,13 +3,13 @@ import {
   DECREMENT_COUNTER,
   FETCH_DATA_START,
   FETCH_DATA_SUCCESS,
-  FETCH_DATA_FAIL
+  FETCH_DATA_FAIL,
 } from '../constants/counter';
 
 const initialState = {
   value: 690,
   data: null,
-  isFetching: true
+  isFetching: true,
 };
 
 const counterReducer = (state = initialState, action) => {

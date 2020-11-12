@@ -3,43 +3,43 @@ import {
   DECREMENT_COUNTER,
   FETCH_DATA_START,
   FETCH_DATA_SUCCESS,
-  FETCH_DATA_FAIL
+  FETCH_DATA_FAIL,
 } from '../constants/counter';
 
 export function incrementCounter() {
   return async dispatch => {
     dispatch({
-      type: INCREMENT_COUNTER
+      type: INCREMENT_COUNTER,
     });
     return true;
   };
 }
 
 export const decrementCounter = () => ({
-  type: DECREMENT_COUNTER
+  type: DECREMENT_COUNTER,
 });
 
 export function getFakeData() {
+  console.log('in get faking data...');
   return async dispatch => {
     dispatch({
-      type: FETCH_DATA_START
+      type: FETCH_DATA_START,
     });
 
     try {
-      const request = await fetch(
-        'https://jsonplaceholder.typicode.com/todos/1'
-      );
+      const request = await fetch('https://jsonplaceholder.typicode.com/posts');
       const data = await request.json();
-      console.log(data)
 
       dispatch({
         type: FETCH_DATA_SUCCESS,
-        payload: data
+        payload: data,
       });
+
+      console.log('success...');
     } catch (error) {
       dispatch({
         type: FETCH_DATA_FAIL,
-        payload: error
+        payload: error,
       });
     }
   };
