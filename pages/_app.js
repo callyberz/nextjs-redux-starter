@@ -1,32 +1,27 @@
-// import { wrapper } from './redux/store';
+import { Provider } from "react-redux";
+import { useStore } from "./redux/store";
 // import '../styles/globals.css';
-
-// function MyApp({ Component, pageProps, store }) {
-//   //Information that was returned  from 'getInitialProps' are stored in the props i.e. pageProps
-//   return <Component {...pageProps} />;
-// }
-
-// // MyApp.getInitialProps = async function ({ Component, ctx }) {
-// //   const pageProps = Component.getInitialProps
-// //     ? await Component.getInitialProps(ctx)
-// //     : {};
-// //   return {
-// //     pageProps: pageProps
-// //   };
-// // };
-
-// //withRedux wrapper that passes the store to the App Component
-// export default wrapper.withRedux(MyApp);
-
-import { Provider } from 'react-redux';
-import { useStore } from './redux/store';
+import { ThemeProvider } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import theme from "./theme";
 
 export default function App({ Component, pageProps }) {
+  React.useEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector("#jss-server-side");
+    if (jssStyles) {
+      jssStyles.parentElement.removeChild(jssStyles);
+    }
+  }, []);
+
   const store = useStore(pageProps.initialReduxState);
 
   return (
     <Provider store={store}>
-      <Component {...pageProps} />
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Component {...pageProps} />
+      </ThemeProvider>
     </Provider>
   );
 }

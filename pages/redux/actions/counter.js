@@ -7,7 +7,7 @@ import {
 } from '../constants/counter';
 
 export function incrementCounter() {
-  return async dispatch => {
+  return async (dispatch) => {
     dispatch({
       type: INCREMENT_COUNTER,
     });
@@ -20,8 +20,7 @@ export const decrementCounter = () => ({
 });
 
 export function getFakeData() {
-  console.log('in get faking data...');
-  return async dispatch => {
+  return async (dispatch) => {
     dispatch({
       type: FETCH_DATA_START,
     });
@@ -35,7 +34,7 @@ export function getFakeData() {
         payload: data,
       });
 
-      console.log('success...');
+      console.log('fetched data successfully');
     } catch (error) {
       dispatch({
         type: FETCH_DATA_FAIL,
