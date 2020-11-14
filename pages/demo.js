@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import { initializeStore } from './redux/store';
+import LoadingOverLay from '../components/LoadingOverLay';
 // import styles from "../styles/Home.module.css";
 
 import {
@@ -49,6 +50,14 @@ function Demo(props) {
 
   return (
     <div>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => dispatch(getFakeData())}
+      >
+        GET
+      </Button>
+
       <div>
         {counter.data &&
           counter.data.length > 0 &&
@@ -64,14 +73,9 @@ function Demo(props) {
               </CardActions>
             </Card>
           ))}
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => dispatch(getFakeData())}
-        >
-          GET
-        </Button>
       </div>
+
+      {counter.isFetching && <LoadingOverLay />}
     </div>
   );
 }

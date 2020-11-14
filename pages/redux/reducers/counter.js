@@ -19,7 +19,7 @@ const counterReducer = (state = initialState, action) => {
     case DECREMENT_COUNTER:
       return { ...state, value: state.value - 1 };
     case FETCH_DATA_START:
-      return { ...state, isFetching: true };
+      return { ...state, isFetching: true, data: [] };
     case FETCH_DATA_SUCCESS:
       return { ...state, isFetching: false, data: action.payload };
     case FETCH_DATA_FAIL:
